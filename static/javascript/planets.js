@@ -34,13 +34,32 @@ function displayPlanets(apiUrl) {
         let results = response['results'];
         for (let i = 0; i < results.length; i++) {
             let planet = results[i];
+
             let allPlanet = document.getElementById('board');
             let newPlanet = document.getElementById('board').innerHTML;
             newPlanet = newPlanet.replace('name', planet['name']);
             newPlanet = newPlanet.replace('diameter', Intl.NumberFormat().format(planet['diameter']) + ' km');
             newPlanet = newPlanet.replace('climate', planet['climate']);
             newPlanet = newPlanet.replace('terrain', planet['terrain']);
-            newPlanet = newPlanet.replace('residents', 'None');
+
+            let resident = planet['residents'];
+            let planetName = planet['name']
+
+            if (resident.length == 0) {
+                newPlanet = newPlanet.replace(`residents`, 'Not know residents');
+
+            } else if (resident.length == 1) {
+                newPlanet = newPlanet.replace('residents', `
+                                <button type="button" id="` + planetName +`" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
+                                                  `);
+
+            } else {
+                newPlanet = newPlanet.replace('residents', `
+                                <button type="button" id="` + planetName + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
+                                                  `);
+            }
+
+
             if (planet['population'] === 'unknown') {
                 newPlanet = newPlanet.replace('population', planet['population'])
             } else {
@@ -51,6 +70,8 @@ function displayPlanets(apiUrl) {
             } else {
                 newPlanet = newPlanet.replace('surface', planet['surface_water'] + '%')
             }
+
+
             allPlanet.closest('.table').innerHTML += newPlanet;
         }
 
