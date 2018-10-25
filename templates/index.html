@@ -25,7 +25,7 @@
                     <a class="nav-link" id="register" href={{ url_for('registration') }}>Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#myModal" href="#">Login</a>
                 </li>
             {% elif username != None %}
                 <li class="nav-item ">
@@ -67,26 +67,53 @@
             {% endif %}
         </tr>
         </thead>
-            <tbody id="board" style="display: none">
-            <tr>
-                <td>name</td>
-                <td class="text-center">diameter</td>
-                <td>climate</td>
-                <td>terrain</td>
-                <td class="text-center">surface</td>
-                <td>population</td>
-                <td>residents</td>
-                <td>
-                    {% if username != None %}
-                        <button type="button" class="btn btn-dark btn-sm vote">
-                            Vote
-                        </button>
-                    {% endif %}
-                </td>
-            </tr>
-            </tbody>
+        <tbody id="board" style="display: none">
+        <tr>
+            <td>name</td>
+            <td class="text-center">diameter</td>
+            <td>climate</td>
+            <td>terrain</td>
+            <td class="text-center">surface</td>
+            <td>population</td>
+            <td>residents</td>
+            <td>
+                {% if username != None %}
+                    <button type="button" class="btn btn-dark btn-sm vote">
+                        Vote
+                    </button>
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
     </table>
 </div>
-
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h4 class="text-center">Login</h4>
+                {% if error %}
+                    <h1 class="text-center">{{ message }}</h1>
+                {% endif %}
+                <table class="table">
+                    <form action={{ url_for('login') }} method="POST">
+                        <tr>
+                            <td>Username: <input type="text" name="username"></td>
+                            <td>Password: <input type="password" name="password"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel
+                                </button>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
