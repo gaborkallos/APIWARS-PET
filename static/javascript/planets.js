@@ -7,9 +7,9 @@ let next = document.getElementById('next');
 next.addEventListener('click', function () {
     if (pagenumber < 7) {
         pagenumber += 1;
-        tbodyList = document.getElementsByTagName("tbody");
-        for (let i = 1; i < tbodyList.length; i++) {
-            tbodyList[i].innerHTML = "";
+        let tbodyList = document.querySelectorAll(".planets tbody");
+        for (let current of tbodyList) {
+            current.remove();
         }
         let nextUrl = 'https://swapi.co/api/planets/?page=' + pagenumber.toString();
         displayPlanets(nextUrl);
@@ -20,8 +20,9 @@ let previuos = document.getElementById('previuos');
 previuos.addEventListener('click', function () {
     if (pagenumber > 1) {
         pagenumber -= 1;
-        tbodyList = document.getElementsByTagName("tbody");
+        let tbodyList = document.getElementsByTagName("tbody");
         for (let i = 1; i < tbodyList.length; i++) {
+            console.log(tbodyList[i]);
             tbodyList[i].innerHTML = "";
         }
         let nextUrl = 'https://swapi.co/api/planets/?page=' + pagenumber.toString();
