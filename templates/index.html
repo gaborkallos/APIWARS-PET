@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API WARS</title>
+    <link rel="icon" href="static/css/Boba-Fett-icon.png" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- Other scripts -->
+    <script src="../static/javascript/main.js" defer></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            {% if username == None %}
+                <li class="nav-item">
+                    <a class="nav-link" id="register" href={{ url_for('registration') }}>Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+            {% elif username != None %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('logout') }}">logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Planet list</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Voting statistic</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign In</a>
+                </li>
+            {% endif %}
+        </ul>
+        {% if username == None %}
+            <span class="navbar-text">You are not loged in</span>
+        {% else %}
+            <span class="navbar-text"><b>{{ username }}</b></span>
+        {% endif %}
+    </div>
+</nav>
+<div class="container">
+    <h1 class="text-center coloring-white">Planets in the Star Wars Universe</h1>
+    <button type="button" class="btn btn-dark btn-sm" id="previuos">Previous</button>
+    <button type="button" class="btn btn-dark btn-sm" id="next">Next</button>
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th class="text-center">Name</th>
+            <th class="text-center">Diameter (km)</th>
+            <th class="text-center">Climatte</th>
+            <th class="text-center">Terran</th>
+            <th class="text-center">Surface Water (persentage)</th>
+            <th class="text-center">Population</th>
+            <th class="text-center">Residents</th>
+            {% if username != None %}
+                <th class="text-center"></th>
+            {% endif %}
+        </tr>
+        </thead>
+            <tbody id="board" style="display: none">
+            <tr>
+                <td>name</td>
+                <td class="text-center">diameter</td>
+                <td>climate</td>
+                <td>terrain</td>
+                <td class="text-center">surface</td>
+                <td>population</td>
+                <td>residents</td>
+                <td>
+                    {% if username != None %}
+                        <button type="button" class="btn btn-dark btn-sm vote">
+                            Vote
+                        </button>
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+    </table>
+</div>
+
+</body>
+</html>

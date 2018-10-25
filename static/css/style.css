@@ -1,0 +1,16 @@
+body {
+    background-color: black !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.coloring-white{
+    color: white;
+    padding: 1%;
+}
+
+.container{
+    min-width: 95% !important;
+}

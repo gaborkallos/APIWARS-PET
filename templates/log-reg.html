@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API WARS REGISTRATION</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="icon" href="static/css/Boba-Fett-icon.png" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" id="register" href={{ url_for('index') }}>Back to main screen</a>
+        </li>
+    </ul>
+</nav>
+<div class="container">
+    {% if login %}
+        <h1 class="text-center coloring-white">Please login</h1>
+        {% if error %}
+            <h1 class="text-center">{{ message }}</h1>
+        {% endif %}
+        <div class="card bg-dark text-white">
+            <table class="table table-dark">
+                <tr>
+                    <form action="/login" method="POST">
+                        <td>Username: <input type="text" name="username"></td>
+                        <td>Password: <input type="password" name="password"></td>
+                        <td>
+                            <button type="submit" class="btn btn-dark btn-sm">Login</button>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+    {% else %}
+        <h1 class="text-center coloring-white">Please do the registration</h1>
+        {% if error %}
+            <h1 class="text-center">{{ message }}</h1>
+        {% endif %}
+        <div class="card bg-dark text-white">
+            <table class="table table-dark">
+                <tr>
+                    <form action="{{ url_for('save_registartion') }}" method="post">
+                        <td>Username: <input placeholder="Username" type="text" name="username"></td>
+                        <td>Password: <input placeholder="Password" type="password" name="password"></td>
+                        <td>
+                            <button type="submit" class="btn btn-dark btn-sm">Register</button>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
