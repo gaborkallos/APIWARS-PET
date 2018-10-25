@@ -91,7 +91,7 @@
             <th class="text-center">Population</th>
             <th class="text-center">Residents</th>
             {% if username != None %}
-                <th class="text-center"></th>
+                <th class="text-center">Vote</th>
             {% endif %}
         </tr>
         </thead>
@@ -104,11 +104,12 @@
             <td class="text-center">surface</td>
             <td>population</td>
             <td>residents</td>
-            <td>
+
                 {% if username != None %}
+                <td>
                     @button@
+                </td>
                 {% endif %}
-            </td>
         </tr>
         </tbody>
     </table>
