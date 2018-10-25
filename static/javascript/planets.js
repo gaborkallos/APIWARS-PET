@@ -43,19 +43,18 @@ function displayPlanets(apiUrl) {
             newPlanet = newPlanet.replace('terrain', planet['terrain']);
 
             let resident = planet['residents'];
-            let planetName = planet['name']
 
             if (resident.length == 0) {
                 newPlanet = newPlanet.replace(`residents`, 'Not know residents');
 
             } else if (resident.length == 1) {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + planetName +`" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
+                                <button type="button" id="` + resident +`" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
                                                   `);
 
             } else {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + planetName + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
+                                <button type="button" id="` + resident + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
                                                   `);
             }
 
