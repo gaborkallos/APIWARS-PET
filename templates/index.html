@@ -79,9 +79,7 @@
             <td>residents</td>
             <td>
                 {% if username != None %}
-                    <button type="button" class="btn btn-dark btn-sm vote">
-                        Vote
-                    </button>
+                    @button@
                 {% endif %}
             </td>
         </tr>
@@ -115,13 +113,18 @@
                             <th>Gender</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tfoot id='modal-board' style="display: none">
                         <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john</td>
+                            <th>@name@</th>
+                            <th>@height@</th>
+                            <th>@mass@</th>
+                            <th>@skin_color@</th>
+                            <th>@hair_color@</th>
+                            <th>@eye_color@</th>
+                            <th>@birth_year@</th>
+                            <th>@gender@</th>
                         </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
                 </div>
             </div>

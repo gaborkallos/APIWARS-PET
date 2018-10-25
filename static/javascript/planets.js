@@ -42,7 +42,9 @@ function displayPlanets(apiUrl) {
             newPlanet = newPlanet.replace('diameter', Intl.NumberFormat().format(planet['diameter']) + ' km');
             newPlanet = newPlanet.replace('climate', planet['climate']);
             newPlanet = newPlanet.replace('terrain', planet['terrain']);
-
+            newPlanet = newPlanet.replace('@button@', `
+                                <button type="button" id="` + planet['name'] + `"class="btn btn-dark btn-sm vote">Vote</button>
+                                        `);
             let resident = planet['residents'];
 
             if (resident.length == 0) {
@@ -50,7 +52,7 @@ function displayPlanets(apiUrl) {
 
             } else if (resident.length == 1) {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + resident +`" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
+                                <button type="button" id="` + resident + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
                                                   `);
 
             } else {
