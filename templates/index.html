@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <span class="navbar-brand" href="#">
-        <img src="static/css/star_wars_silver_logo.png" width="50" height="25">
+        <img src="{{ url_for('static', filename='css/star_wars_silver_logo.png') }}" width="40" height="18">
     </span>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -103,16 +103,16 @@
         </thead>
         <tbody id="board" style="display: none">
         <tr>
-            <td>name</td>
+            <td class="text-center">name</td>
             <td class="text-center">diameter</td>
-            <td>climate</td>
-            <td>terrain</td>
+            <td class="text-center">climate</td>
+            <td class="text-center">terrain</td>
             <td class="text-center">surface</td>
-            <td>population</td>
-            <td>residents</td>
+            <td class="text-center">population</td>
+            <td class="text-center">residents</td>
 
             {% if username != None %}
-                <td>
+                <td class="text-center">
                     @button@
                 </td>
             {% endif %}
@@ -137,26 +137,26 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Height (in meters)</th>
-                            <th>Mass (in kg)</th>
-                            <th>Skin color</th>
-                            <th>Hair color</th>
-                            <th>Eye color</th>
-                            <th>Birth year</th>
-                            <th>Gender</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Height (in meters)</th>
+                            <th class="text-center">Mass (in kg)</th>
+                            <th class="text-center">Skin color</th>
+                            <th class="text-center">Hair color</th>
+                            <th class="text-center">Eye color</th>
+                            <th class="text-center">Birth year</th>
+                            <th class="text-center">Gender</th>
                         </tr>
                         </thead>
                         <tfoot id='modal-board' style="display: none">
                         <tr>
-                            <td>@name@</td>
-                            <td>@height@</td>
-                            <td>@mass@</td>
-                            <td>@skin_color@</td>
-                            <td>@hair_color@</td>
-                            <td>@eye_color@</td>
-                            <td>@birth_year@</td>
-                            <td>@gender@</td>
+                            <td class="text-center">@name@</td>
+                            <td class="text-center">@height@</td>
+                            <td class="text-center">@mass@</td>
+                            <td class="text-center">@skin_color@</td>
+                            <td class="text-center">@hair_color@</td>
+                            <td class="text-center">@eye_color@</td>
+                            <td class="text-center">@birth_year@</td>
+                            <td class="text-center">@gender@</td>
                         </tr>
                         </tfoot>
                     </table>
