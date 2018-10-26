@@ -51,12 +51,12 @@ function displayPlanets(apiUrl) {
 
             } else if (resident.length == 1) {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + resident + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
+                                <button type="button" id="` + resident + "," + planet['name'] +`" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
                                                   `);
 
             } else {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + resident + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
+                                <button type="button" id="` + resident +  "," + planet['name'] + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
                                                   `);
             }
 
@@ -86,5 +86,10 @@ function votePlanet(planetname) {
 
 function getVoteButtons() {
     let voteButtons = document.getElementsByClassName('vote');
-    console.log(voteButtons);
-}
+    for (let i = 0; i < voteButtons.length; i++) {
+        voteButtons[i].addEventListener('click', function(){
+            console.log(voteButtons[i].id);
+            });
+
+        }
+    }

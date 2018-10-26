@@ -63,15 +63,18 @@ def login():
                                    error=True, message=message)
 
 
-@app.route('/vote')
+@app.route('/vote', methods=['POST'])
 def vote_to_planet():
-    pass
+    planetname = request.form['planetname']
+    data_manager.vote_planet(session['user_name'], planetname)
+    return redirect(url_for('index'))
 
 
 @app.route('/logout')
 def logout():
     session.pop('user_name', None)
     return redirect(url_for('index'))
+
 
 
 app.secret_key = os.urandom(24)

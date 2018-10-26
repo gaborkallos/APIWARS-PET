@@ -29,8 +29,13 @@ def get_password_by_username(cursor, username):
     return cursor.fetchone()
 
 @database_common.connection_handler
-def vote_planet(cursor, username):
+def vote_planet(cursor, username, planetname):
     cursor.execute('''
                     SELECT id FROM users
-                    WHERE user_name=%(user_name)s
-                    ''')
+                    WHERE user_name = %(username)s;
+                    ''', {'username':username})
+    userid = cursor.fetcone()
+    cursor.execute('''
+                    INSERT INTO planet_votes
+                    VALUES (%(planet_name)s, %(user_id)s, current_timestamp);
+                    ''', {'planet_name':planetname, 'user_id':userid['id']})
