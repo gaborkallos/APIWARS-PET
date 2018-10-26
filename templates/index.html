@@ -53,7 +53,7 @@
     <h1 class="text-center coloring-white">Planets in the Star Wars Universe</h1>
     <button type="button" class="btn btn-dark btn-sm" id="previuos">Previous</button>
     <button type="button" class="btn btn-dark btn-sm" id="next">Next</button>
-    <table class="table table-dark table-hover">
+    <table class="table table-dark table-hover planets">
         <thead>
         <tr>
             <th class="text-center">Name</th>
@@ -68,7 +68,7 @@
             {% endif %}
         </tr>
         </thead>
-        <tbody id="board" style="display: none">
+        <tfoot id="board" style="display: none">
         <tr>
             <td>name</td>
             <td class="text-center">diameter</td>
@@ -83,7 +83,7 @@
                 {% endif %}
             </td>
         </tr>
-        </tbody>
+        </tfoot>
     </table>
 </div>
 
@@ -95,7 +95,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Residents</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">

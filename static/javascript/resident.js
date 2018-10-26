@@ -5,7 +5,6 @@ function reply_click(clickedID) {
     }
     let tbodys = document.querySelectorAll(".modal-body tbody");
     for (let currentTbody of tbodys){
-        console.log(currentTbody);
         currentTbody.remove();
     }
 }

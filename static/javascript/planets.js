@@ -20,10 +20,9 @@ let previuos = document.getElementById('previuos');
 previuos.addEventListener('click', function () {
     if (pagenumber > 1) {
         pagenumber -= 1;
-        let tbodyList = document.getElementsByTagName("tbody");
-        for (let i = 1; i < tbodyList.length; i++) {
-            console.log(tbodyList[i]);
-            tbodyList[i].innerHTML = "";
+        let tbodyList = document.querySelectorAll(".planets tbody");
+        for (let current of tbodyList) {
+            current.remove();
         }
         let nextUrl = 'https://swapi.co/api/planets/?page=' + pagenumber.toString();
         displayPlanets(nextUrl);
@@ -76,11 +75,16 @@ function displayPlanets(apiUrl) {
 
             allPlanet.closest('.table').innerHTML += newPlanet;
         }
-
+        getVoteButtons();
     });
 }
 
-// let votebtn = document.getElementsByClassName('vote');
-// votebtn.addEventListener('click', function(){
-//     console.log('hello');
-// });
+
+function votePlanet(planetname) {
+    console.log(planetname)
+}
+
+function getVoteButtons() {
+    let voteButtons = document.getElementsByClassName('vote');
+    console.log(voteButtons);
+}
