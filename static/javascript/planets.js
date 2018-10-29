@@ -42,7 +42,7 @@ function displayPlanets(apiUrl) {
             newPlanet = newPlanet.replace('climate', planet['climate']);
             newPlanet = newPlanet.replace('terrain', planet['terrain']);
             newPlanet = newPlanet.replace('@button@', `
-                                <button type="button" id="` + planet['name'] + `"class="btn btn-dark btn-sm vote">Vote</button>
+                                <button type="button" id="` + planet['name'] + "," + planet['url'] +  `" class="btn btn-dark btn-sm vote">Vote</button>
                                         `);
             let resident = planet['residents'];
 
@@ -51,12 +51,12 @@ function displayPlanets(apiUrl) {
 
             } else if (resident.length == 1) {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + resident + "," + planet['name'] +`" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
+                                <button type="button" id="` + resident + "," + planet['name'] + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Resident</button>
                                                   `);
 
             } else {
                 newPlanet = newPlanet.replace('residents', `
-                                <button type="button" id="` + resident +  "," + planet['name'] + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
+                                <button type="button" id="` + resident + "," + planet['name'] + `" onClick="reply_click(this.id)" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Residents (` + resident.length + `)</button>
                                                   `);
             }
 
@@ -80,16 +80,27 @@ function displayPlanets(apiUrl) {
 }
 
 
-function votePlanet(planetname) {
-    console.log(planetname)
+function votePlanet(planetname, planetid) {
+    var form = $('<form action="/vote" method="post">' +
+        '<input type="text" name="planetname" value="' + planetname + '" />' +
+        '<input type="text" name="planetid" value="' + planetid + '" />' +
+        '</form>');
+    $('body').append(form);
+    form.submit();
 }
 
 function getVoteButtons() {
     let voteButtons = document.getElementsByClassName('vote');
     for (let i = 0; i < voteButtons.length; i++) {
-        voteButtons[i].addEventListener('click', function(){
-            console.log(voteButtons[i].id);
-            });
+        voteButtons[i].addEventListener('click', function () {
+            let planet = voteButtons[i].id.split(",");
+            let planetName = planet[0];
+            let planetUrl = planet [1].split("/");
+            let planetId = planetUrl[5];
+            console.log(planetName);
+            console.log(planetId);
+            votePlanet(voteButtons[i].id, planetId)
+        });
 
-        }
     }
+}

@@ -29,13 +29,14 @@ def get_password_by_username(cursor, username):
     return cursor.fetchone()
 
 @database_common.connection_handler
-def vote_planet(cursor, username, planetname):
+def vote_planet(cursor, username, planetname, planetid):
     cursor.execute('''
                     SELECT id FROM users
                     WHERE user_name = %(username)s;
                     ''', {'username':username})
-    userid = cursor.fetcone()
+    userid = cursor.fetchone()
     cursor.execute('''
-                    INSERT INTO planet_votes
-                    VALUES (%(planet_name)s, %(user_id)s, current_timestamp);
-                    ''', {'planet_name':planetname, 'user_id':userid['id']})
+                    INSERT INTO planet_votes (planet_name, user_id, planet_id)
+                    VALUES (%(planet_name)s, %(user_id)s, %(planet_id)s);
+                    ''', {'planet_name':planetname, 'user_id':userid['id'],
+                          'planet_id':planetid})

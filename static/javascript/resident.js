@@ -1,12 +1,11 @@
 function reply_click(clickedID) {
     let residents = clickedID.split(",");
+    let planetname = residents[residents.length-1];
     for (let i = 0; i < residents.length-1; i++) {
         getResidents(residents[i])
     }
-    let planetname = residents[residents.length-1];
     let header = document.querySelector("#modal-title");
-    header.innerHTML = ` Residents of ${planetname}`;
-
+    header.innerHTML = ` Residents of ${planetname}:`;
     let tbodys = document.querySelectorAll(".modal-body tbody");
     for (let currentTbody of tbodys){
         currentTbody.remove();
